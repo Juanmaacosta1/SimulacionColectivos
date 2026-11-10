@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.RadioButton?>
+<?import javafx.scene.control.TextArea?>
+<?import javafx.scene.control.ToggleGroup?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.FlowPane?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Text?>
+
+<VBox prefHeight="650" prefWidth="650" spacing="15" stylesheets="@styles.css" xmlns="http://javafx.com/javafx/24.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="subte.ui.impl.javafx.controller.MainWindowSubteController">
+
+    <!-- Header Banner -->
+    <VBox styleClass="header-container">
+        <Text styleClass="header-title" text="%app.heading" />
+        <Text styleClass="header-subtitle" text="%app.subtitle" />
+    </VBox>
+
+    <!-- Content Body -->
+    <VBox spacing="15" VBox.vgrow="ALWAYS">
+        <padding>
+            <Insets bottom="20" left="20" right="20" top="10" />
+        </padding>
+
+        <!-- Selección de Estaciones -->
+        <VBox spacing="12" styleClass="card-panel">
+            <Label styleClass="form-label" text="%route.selection" />
+            <GridPane hgap="15" vgap="10">
+                <columnConstraints>
+                    <ColumnConstraints percentWidth="50" />
+                    <ColumnConstraints percentWidth="50" />
+                </columnConstraints>
+
+                <VBox spacing="5" GridPane.columnIndex="0">
+                    <Label text="%route.origin" />
+                    <ComboBox fx:id="cmbOrigen" maxWidth="Infinity" promptText="%route.origin.prompt" />
+                </VBox>
+
+                <VBox spacing="5" GridPane.columnIndex="1">
+                    <Label text="%route.destination" />
+                    <ComboBox fx:id="cmbDestino" maxWidth="Infinity" promptText="%route.destination.prompt" />
+                </VBox>
+            <rowConstraints>
+               <RowConstraints />
+            </rowConstraints>
+            </GridPane>
+
+            <Label styleClass="form-label" text="%route.criteria" />
+            <FlowPane hgap="15" vgap="8">
+                <RadioButton fx:id="rbMasRapido" selected="true" text="%route.fastest">
+               <toggleGroup>
+                  <ToggleGroup fx:id="grupoCriterio" />
+               </toggleGroup></RadioButton>
+                <RadioButton fx:id="rbMenosCongestion" disable="true" text="%route.lessCongestion" toggleGroup="$grupoCriterio" />
+                <RadioButton fx:id="rbMenosTransbordo" disable="true" text="%route.fewerTransfers" toggleGroup="$grupoCriterio" />
+            </FlowPane>
+            <Label text="%route.futureCriteria" wrapText="true" />
+            <HBox alignment="CENTER_RIGHT">
+                <padding>
+                    <Insets top="10" />
+                </padding>
+                <Button fx:id="btnCalcular" onAction="#handleCalcularRuta" styleClass="btn-primary" text="%route.calculate" />
+            </HBox>
+            <fx:define>
+                <ToggleGroup fx:id="grupoCriterio" />
+            </fx:define>
+        </VBox>
+
+        <!-- Resultados -->
+        <VBox spacing="10" styleClass="card-panel" VBox.vgrow="ALWAYS">
+            <Label styleClass="form-label" text="%route.itinerary" />
+            <TextArea fx:id="txtResultado" editable="false" prefRowCount="12" text="%route.ready" wrapText="true" VBox.vgrow="ALWAYS" />
+        </VBox>
+    </VBox>
+</VBox>
