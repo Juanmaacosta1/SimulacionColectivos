@@ -1,4 +1,4 @@
-package net.datastructures;
+package datastructures;
 /*
  * Copyright 2014, Michael T. Goodrich, Roberto Tamassia, Michael H. Goldwasser
  *
