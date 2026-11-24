@@ -25,5 +25,11 @@ public class SimulacionColectivos {
         SimulacionOutput vista = new SimulacionOutput();
         Simulador simulador = new Simulador(colectivos, vista);
         simulador.ejecutar();
+
+        System.out.println(Configuracion.getCapacidadColectivo());
+System.out.println(Configuracion.getCantidadAsientos());
+System.out.println(Configuracion.getMaxVueltas());
+System.out.println(Configuracion.getArchivoSalida());
     }
+    
 }

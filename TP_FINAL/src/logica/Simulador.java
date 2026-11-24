@@ -5,11 +5,11 @@ import modelo.Colectivo;
 import modelo.Parada;
 import modelo.Pasajero;
 import presentacion.SimulacionOutput;
-
+import config.Configuracion;
 public class Simulador {
     private List<Colectivo> colectivos;
     private SimulacionOutput vista;
-
+private final int capacidad = Configuracion.getCapacidadColectivo();
     public Simulador(List<Colectivo> colectivos, SimulacionOutput vista) {
         this.colectivos = colectivos;
         this.vista = vista;

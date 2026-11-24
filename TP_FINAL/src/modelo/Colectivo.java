@@ -3,11 +3,12 @@ package modelo;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Iterator;
-
+import java.util.Map;
 public class Colectivo {
     private int id;
     private Linea linea;
     private List<Pasajero> pasajeros = new ArrayList<>();
+    private int capacidad;
 
 
     public Colectivo(int id, Linea linea) {
@@ -16,11 +17,13 @@ public class Colectivo {
     }
 
 //metodos
-public List<Pasajero> SubirPasajerosEn(Parada parada, int posicionActual) {
+public List<Pasajero> SubirPasajerosEn(Parada parada, int posicionActual, int maxCapacidad) {
+    int espacioDisponible = maxCapacidad - pasajeros.size();
+
     List<Pasajero> subieron = new ArrayList<>();
     Iterator<Pasajero> iterator = parada.getPasajerosEsperando().iterator();
 
-    while (iterator.hasNext()) {
+    while (iterator.hasNext() && subieron.size() < espacioDisponible) {
         Pasajero pasajero = iterator.next();
 
         if (PuedeSubir(pasajero, parada, posicionActual)) {
@@ -37,8 +40,8 @@ public boolean PuedeSubir(Pasajero pasajero, Parada parada, int posicionActual) 
 }
 
 public boolean DestinoEstaEnRecorridoFuturo(Parada destino, int posicionActual) {
-    int indiceDestino = linea.getIndiceParada(destino);
-    return indiceDestino > posicionActual;
+    Integer indiceDestino = linea.getMapaIndicesParadas().get(destino);
+    return indiceDestino != null && indiceDestino > posicionActual;
 }
 
 public List<Pasajero> BajarPasajeroEn(Parada parada) {
@@ -72,4 +75,4 @@ public int getId() {
     }
 
     
-}
+}       

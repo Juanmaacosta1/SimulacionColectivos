@@ -65,7 +65,7 @@ public Map<Integer, Parada> cargarParadas(String archivo) {
     }
     return paradas;
 }
-
+    
 
 public List<Linea> cargarLineas(String archivo, Map<Integer, Parada> paradas) {
     List<Linea> lineas = new ArrayList<>();
