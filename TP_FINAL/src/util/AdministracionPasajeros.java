@@ -1,5 +1,6 @@
 package util;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 import config.Configuracion;
@@ -9,6 +10,7 @@ import modelo.Pasajero;
 
 public class AdministracionPasajeros{
         private static Random random = new Random();
+        private static final List<Pasajero> todosLosPasajeros = new ArrayList<>();
         private static final int MAX_PASAJERO_POR_PARADA = Configuracion.getMaxPasajerosPorParada();
 
         public static void generarPasajerosRANDOM(List<Linea> lineas){
@@ -34,6 +36,7 @@ public class AdministracionPasajeros{
             Parada destino = elegirDestinoAleatorio(paradas, i);
             Pasajero pasajero = new Pasajero(idPasajero++, destino);
             origen.agregarPasajero(pasajero);
+            todosLosPasajeros.add(pasajero);
         }
     }
     return idPasajero;
@@ -45,6 +48,8 @@ private static Parada elegirDestinoAleatorio(List<Parada> paradas, int indiceOri
     return paradas.get(indiceDestino);
 }
        
+
+    public static List<Pasajero> getTodosLosPasajeros() {
+        return todosLosPasajeros;
+    }
 }
-    
-       

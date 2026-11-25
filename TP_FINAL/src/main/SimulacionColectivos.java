@@ -14,22 +14,18 @@ import util.AdministracionPasajeros;
 
 public class SimulacionColectivos {
     public static void main(String[] args) {
-        Datos datos = new Datos();
+        SimulacionOutput vista = SimulacionOutput.crearConArchivo(Configuracion.getArchivoSalida());
+        Datos datos = new Datos(Configuracion.getArchivoParadas(), Configuracion.getArchivoLineas(), vista);
 
-        Map<Integer, Parada> paradas = datos.cargarParadas(Configuracion.getArchivoParadas());
+        Map<Integer, Parada> paradas = datos.cargarParadas();
         List<Linea> lineas = datos.cargarLineas(Configuracion.getArchivoLineas(), paradas);
 
         AdministracionPasajeros.generarPasajerosRANDOM(lineas);
         List<Colectivo> colectivos = AdministracionColectivos.generarColectivos(lineas);
 
-        SimulacionOutput vista = new SimulacionOutput();
         Simulador simulador = new Simulador(colectivos, vista);
         simulador.ejecutar();
 
-        System.out.println(Configuracion.getCapacidadColectivo());
-System.out.println(Configuracion.getCantidadAsientos());
-System.out.println(Configuracion.getMaxVueltas());
-System.out.println(Configuracion.getArchivoSalida());
+        vista.cerrarArchivo();
     }
-    
-}
+}   

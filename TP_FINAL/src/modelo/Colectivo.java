@@ -4,10 +4,12 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Iterator;
 import java.util.Map;
+import config.Configuracion;
 public class Colectivo {
     private int id;
     private Linea linea;
     private List<Pasajero> pasajeros = new ArrayList<>();
+    private final List<Integer> ocupacionPorTramo = new ArrayList<>();
     private int capacidad;
 
 
@@ -30,9 +32,27 @@ public List<Pasajero> SubirPasajerosEn(Parada parada, int posicionActual, int ma
             pasajeros.add(pasajero);
             subieron.add(pasajero);
             iterator.remove();
+            pasajero.califiacionAlsubir(pasajeros.size() - 1, Configuracion.getCantidadAsientos());
         }
     }
+    marcarPasajerosQueNoSubieron(parada, posicionActual);
     return subieron;
+}
+
+private void marcarPasajerosQueNoSubieron(Parada parada, int posicionActual) {
+    for (Pasajero pasajero : parada.getPasajerosEsperando()) {
+        if (PuedeSubir(pasajero, parada, posicionActual)) {
+            pasajero.perderColectivo();
+        }
+    }
+}
+
+public void registrarOcupacion() {
+    ocupacionPorTramo.add(pasajeros.size());
+}
+
+public List<Integer> getOcupacionPorTramo() {
+    return ocupacionPorTramo;
 }
 
 public boolean PuedeSubir(Pasajero pasajero, Parada parada, int posicionActual) {
@@ -75,4 +95,4 @@ public int getId() {
     }
 
     
-}       
+}
