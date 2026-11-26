@@ -6,8 +6,12 @@ import java.util.function.Consumer;
 import modelo.*;
 
 public class SimulacionOutput {
+    public record EstadoVisual(String linea, String parada, int esperando, int aBordo,
+                               int capacidad, int subieron, int bajaron) {}
+
     private PrintStream archivoOut = null;
     private Consumer<String> listener = null;
+    private Consumer<EstadoVisual> listenerVisual = null;
 
     public SimulacionOutput() {}
 
@@ -23,6 +27,10 @@ public class SimulacionOutput {
 
     public void setListener(Consumer<String> listener) {
         this.listener = listener;
+    }
+
+    public void setListenerVisual(Consumer<EstadoVisual> listenerVisual) {
+        this.listenerVisual = listenerVisual;
     }
 
     public void cerrarArchivo() { if (archivoOut != null) archivoOut.close(); }
@@ -49,6 +57,15 @@ public class SimulacionOutput {
     public void mostrarEstadoColectivo(Colectivo c, int bajaron, int subieron) {
         imprimir("  Bajaron: " + bajaron + " | Subieron: " + subieron
                 + " | A bordo: " + c.getCantidadPasajeros() + "\n");
+    }
+
+    public void actualizarVisualizacion(Colectivo c, Parada parada, int capacidad,
+                                        int esperando, int bajaron, int subieron) {
+        if (listenerVisual != null) {
+            listenerVisual.accept(new EstadoVisual(c.getLinea().getCodigo(),
+                    parada.getDireccion(), esperando,
+                    c.getCantidadPasajeros(), capacidad, subieron, bajaron));
+        }
     }
 
     public void mostrarFinRecorrido(Colectivo c) {

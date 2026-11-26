@@ -59,11 +59,17 @@ public class Simulador {
     private void procesarParada(Colectivo colectivo, Parada parada, int posicionActual) {
         vista.mostrarLlegadaColectivo(colectivo, parada);
 
+        int esperandoAntesDeAbordar = parada.getPasajerosEsperando().size();
+        vista.actualizarVisualizacion(colectivo, parada, capacidad,
+                esperandoAntesDeAbordar, 0, 0);
+
         List<Pasajero> bajaron = colectivo.bajarPasajeroEn(parada);
         List<Pasajero> subieron = colectivo.subirPasajerosEn(parada, posicionActual, capacidad);
 
         vista.mostrarEventosPasajeros(bajaron, subieron);
         vista.mostrarEstadoColectivo(colectivo, bajaron.size(), subieron.size());
+        vista.actualizarVisualizacion(colectivo, parada, capacidad,
+                parada.getPasajerosEsperando().size(), bajaron.size(), subieron.size());
 
         // la última parada no inicia ningún tramo (N paradas = N-1 tramos)
         if (posicionActual < colectivo.getLinea().getParadas().size() - 1) {

@@ -12,7 +12,40 @@
         </HBox>
     </top>
     <center>
-        <TextArea fx:id="areaSalida" editable="false" styleClass="salida"/>
+        <SplitPane dividerPositions="0.25" styleClass="contenido">
+            <items>
+                <VBox spacing="8" styleClass="panel-lineas">
+                    <Label text="Líneas" styleClass="subtitulo"/>
+                    <ScrollPane fitToWidth="true" VBox.vgrow="ALWAYS" styleClass="scroll-lineas">
+                        <content>
+                            <VBox fx:id="panelLineas" spacing="6" styleClass="lista-lineas"/>
+                        </content>
+                    </ScrollPane>
+                </VBox>
+                <VBox spacing="8" styleClass="panel-paradas">
+                    <Label fx:id="lblLineaSeleccionada" text="Seleccione una línea" styleClass="subtitulo"/>
+                    <VBox spacing="8" styleClass="panel-visual">
+                        <HBox alignment="CENTER_LEFT" spacing="8">
+                            <Label text="Parada actual:" styleClass="etiqueta-visual"/>
+                            <Label fx:id="lblParadaActual" text="Esperando simulación" styleClass="parada-actual"/>
+                        </HBox>
+                        <HBox spacing="10">
+                            <VBox spacing="6" HBox.hgrow="ALWAYS" styleClass="tarjeta-personas">
+                                <Label text="Esperando en la parada" styleClass="etiqueta-visual"/>
+                                <HBox fx:id="personasEsperando" alignment="CENTER_LEFT" spacing="5"/>
+                                <Label fx:id="lblEsperando" text="0 personas" styleClass="contador-personas"/>
+                            </VBox>
+                            <VBox spacing="6" HBox.hgrow="ALWAYS" styleClass="tarjeta-personas">
+                                <Label text="A bordo del colectivo" styleClass="etiqueta-visual"/>
+                                <HBox fx:id="personasAbordo" alignment="CENTER_LEFT" spacing="5"/>
+                                <Label fx:id="lblAbordo" text="0 personas" styleClass="contador-personas"/>
+                            </VBox>
+                        </HBox>
+                    </VBox>
+                    <TextArea fx:id="areaSalida" editable="false" VBox.vgrow="ALWAYS" styleClass="salida"/>
+                </VBox>
+            </items>
+        </SplitPane>
     </center>
     <bottom>
         <Label fx:id="lblEstado" text="Listo" styleClass="estado"/>

@@ -1,0 +1,96 @@
+.raiz {
+    -fx-background-color: #f4f6f8;
+}
+
+.barra {
+    -fx-padding: 12 16;
+    -fx-background-color: #263238;
+}
+
+.titulo {
+    -fx-text-fill: white;
+    -fx-font-size: 18;
+    -fx-font-weight: bold;
+}
+
+.subtitulo {
+    -fx-font-size: 15;
+    -fx-font-weight: bold;
+}
+
+.contenido {
+    -fx-padding: 12;
+}
+
+.panel-lineas,
+.panel-paradas {
+    -fx-padding: 10;
+}
+
+.lista-lineas {
+    -fx-padding: 2;
+}
+
+.boton-linea {
+    -fx-background-color: #455a64;
+    -fx-text-fill: white;
+    -fx-font-size: 14;
+    -fx-padding: 8;
+}
+
+.boton-linea:hover {
+    -fx-background-color: #607d8b;
+}
+
+.boton-linea-seleccionado {
+    -fx-background-color: #1976d2;
+    -fx-border-color: #90caf9;
+    -fx-border-width: 2;
+}
+
+.scroll-lineas {
+    -fx-background-color: transparent;
+}
+
+.salida {
+    -fx-font-family: "Monospace";
+    -fx-font-size: 13;
+}
+
+.panel-visual {
+    -fx-padding: 10;
+    -fx-background-color: #e8eef2;
+    -fx-background-radius: 8;
+}
+
+.etiqueta-visual {
+    -fx-font-weight: bold;
+    -fx-text-fill: #455a64;
+}
+
+.parada-actual {
+    -fx-font-weight: bold;
+    -fx-text-fill: #1976d2;
+}
+
+.tarjeta-personas {
+    -fx-padding: 10;
+    -fx-background-color: white;
+    -fx-background-radius: 7;
+    -fx-border-color: #d7e0e5;
+    -fx-border-radius: 7;
+}
+
+.contador-personas {
+    -fx-text-fill: #37474f;
+    -fx-font-size: 12;
+}
+
+.personas-extra {
+    -fx-font-weight: bold;
+    -fx-text-fill: #455a64;
+}
+
+.estado {
+    -fx-padding: 8 16;
+}
