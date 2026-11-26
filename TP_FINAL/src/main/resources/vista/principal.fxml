@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<BorderPane xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1"
+            fx:controller="controlador.PrincipalController" styleClass="raiz">
+    <top>
+        <HBox styleClass="barra" alignment="CENTER_LEFT" spacing="12">
+            <Label text="Simulación de colectivos" styleClass="titulo"/>
+            <Region HBox.hgrow="ALWAYS"/>
+            <Button fx:id="btnIniciar" text="Iniciar" onAction="#onIniciar" styleClass="boton-primario"/>
+        </HBox>
+    </top>
+    <center>
+        <TextArea fx:id="areaSalida" editable="false" styleClass="salida"/>
+    </center>
+    <bottom>
+        <Label fx:id="lblEstado" text="Listo" styleClass="estado"/>
+    </bottom>
+</BorderPane>
